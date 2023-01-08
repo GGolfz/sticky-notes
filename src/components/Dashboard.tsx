@@ -41,9 +41,6 @@ const Dashboard = () => {
       <div className="hint-block" onDoubleClick={handleStopPropagation}>
         <img className="logo-img" src="/sticky-notes.ico" alt="" />
         <span>double-click on any blank space to create a card. </span>
-        <a href="https://github.com/justmemos/sticky-notes">
-          <img src="https://img.shields.io/github/stars/usememos/sticky-notes" alt="" />
-        </a>
       </div>
       <Toolbar />
       {noteList.map((note) => {

@@ -60,9 +60,13 @@ export const noteStoreSlice = createSlice({
       const temp = state.noteList.filter((note) => note.id !== action.payload);
       state.noteList = [...temp].sort((a, b) => a.updatedTs - b.updatedTs);
     },
+    // delete all note
+    deleteAllNote: (state) => {
+      state.noteList = [];
+    }
   },
 });
 
-export const { addNote, updateNoteById, deleteNoteById } = noteStoreSlice.actions;
+export const { addNote, updateNoteById, deleteNoteById, deleteAllNote } = noteStoreSlice.actions;
 
 export default noteStoreSlice.reducer;

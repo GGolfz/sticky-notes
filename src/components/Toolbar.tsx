@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../store";
 import { setShowTrashDialogFlag } from "../store/global";
-import { addNote, updateNoteById } from "../store/note";
+import { addNote, updateNoteById, deleteAllNote } from "../store/note";
 import "../less/toolbar.less";
 
 const Toolbar = () => {
@@ -51,13 +51,29 @@ const Toolbar = () => {
     dispatch(setShowTrashDialogFlag(!globalState.showTrashDialogFlag));
   }, [globalState.showTrashDialogFlag]);
 
+  const handleClearClick = useCallback(() => {
+    dispatch(deleteAllNote());
+  }, []);
+
   return (
-    <div className={`toolbar-container opacity-80 ${globalState.draggingNote ? "z-10" : ""}`} onDoubleClick={handleStopPropagation}>
+    <div
+      className={`toolbar-container opacity-80 ${
+        globalState.draggingNote ? "z-10" : ""
+      }`}
+      onDoubleClick={handleStopPropagation}
+    >
       <span className="action-btn" onClick={handleNewCardButtonClick}>
         📝
       </span>
-      <span className="action-btn trash-bin" onClick={handleTrashClick} onMouseUp={handleTrashMouseUp}>
+      <span
+        className="action-btn trash-bin"
+        onClick={handleTrashClick}
+        onMouseUp={handleTrashMouseUp}
+      >
         🗑
+      </span>
+      <span className="action-btn" onClick={handleClearClick}>
+        🆑
       </span>
     </div>
   );
